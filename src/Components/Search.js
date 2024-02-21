@@ -44,7 +44,7 @@ const handleChange = (e) =>{
 }
 
 return(
-  <div>
+  <div className='pt-5'>
     <Select options={options} 
   onChange={handleChange} 
   defaultValue={selectedOption}

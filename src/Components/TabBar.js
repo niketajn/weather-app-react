@@ -20,11 +20,12 @@ const TabBar = ({data}) => {
   
   var weekDays = [];
   var response = groupBy(data.list,'dt_txt')
+  console.log(response)
   let dates = Object.keys(response)
 
   dates.map((date) =>{  
     var dayOfWeek = dayNames[new Date((response[date][0].dt)*1000).getDay()]; 
-    weekDays.push(dayOfWeek);
+    weekDays.push(dayOfWeek+'  '+response[date][0].dt_txt.split(' ')[0]);
     return date 
   })
 
@@ -32,18 +33,17 @@ return(
 <>  
   <Tabs>
     <TabList>
-      {weekDays.map((uniqueDay=>{ return (<Tab>{uniqueDay}</Tab>)}))}
+      {weekDays.map(((uniqueDay,index)=>{ return (<Tab key={index}>{uniqueDay}</Tab>)}))}
     </TabList>
 
     {dates.map((date) => {
       return( 
     <TabPanel>
-    <ChartLine chartData={response[date]}/>
+      <ChartLine chartData={response[date]}/>
     </TabPanel>
       )
   })}
   </Tabs>
-  
 </>
 )
 };

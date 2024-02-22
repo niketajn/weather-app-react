@@ -44,13 +44,13 @@ export const data = {
 };
 
 const ChartLine = ({chartData}) => {
-  var labelArr =[], minTempArr = [], maxTempArr = [], humidity=[];
+
+  var labelArr =[], minTempArr = [], maxTempArr = [];
 
   for(let i=0;i<chartData.length;i++){
      labelArr.push(chartData[i].dt_txt.split(' ')[1]);
      minTempArr.push(chartData[i].main.temp_min);
      maxTempArr.push(chartData[i].main.temp_max);
-     humidity.push(chartData[i].main.humidity);
   }
 
   let chartNewData = data;

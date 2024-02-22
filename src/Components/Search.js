@@ -7,10 +7,27 @@ import TabBar from './TabBar';
 const Search = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [data,setData] = useState([]);
-    const [showChart, setShowChart] = useState(false)
+    const [showChart, setShowChart] = useState(false);
+    const [options,setOptions] = useState([]);
+
     let api_key='0f45a72510680bea46d00034972d2e72';
     
     useEffect(() => {
+
+        
+    fetch( 'resources/cities_list.csv' )
+    .then( response => response.text() )
+    .then( responseText => {
+        // -- parse csv
+        var data = Papa.parse(responseText).data;
+        for(var i =1;i<data.length;i++){
+            //starting with i=1 because we don't want the csv title row
+            const name = data[i][0];
+            let o = options;
+            o.push({'value':name,'label':name})
+            setOptions(o)
+        }
+    });
         // do stuff
         if(selectedOption){
             fetchWeatherData(selectedOption);
@@ -24,19 +41,6 @@ const Search = () => {
         setShowChart(true);
         setData(data);
     }
-    const options = [];
-
-    fetch( 'resources/cities_list.csv' )
-        .then( response => response.text() )
-        .then( responseText => {
-            // -- parse csv
-            var data = Papa.parse(responseText).data;
-            for(var i =1;i<data.length;i++){
-                //starting with i=1 because we don't want the csv title row
-                const name = data[i][0];
-                options.push({'value':name,'label':name})
-            }
-        });
     
 const handleChange = (e) =>{
     setShowChart(false)

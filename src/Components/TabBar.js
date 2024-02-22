@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ChartLine from './ChartLine';
+import Cards from './Cards';
 
 const TabBar = ({data}) => {
 
@@ -20,7 +21,6 @@ const TabBar = ({data}) => {
   
   var weekDays = [];
   var response = groupBy(data.list,'dt_txt')
-  console.log(response)
   let dates = Object.keys(response)
 
   dates.map((date) =>{  
@@ -39,6 +39,7 @@ return(
     {dates.map((date) => {
       return( 
     <TabPanel>
+      <Cards cardData={response[date]}></Cards>
       <ChartLine chartData={response[date]}/>
     </TabPanel>
       )

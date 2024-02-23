@@ -48,13 +48,15 @@ const handleChange = (e) =>{
 }
 
 return(
-  <div className='pt-5'>
-    <Select options={options} 
-  onChange={handleChange} 
-  defaultValue={selectedOption}
-  noOptionsMessage={() => "No cities found"}
-  placeholder="select city"/>
-    <p>{selectedOption}</p>
+  <div className='py-5 container'>
+    <h2 className='text-start'>Search For City Weather</h2>
+    <Select options={options} className='w-50'
+        onChange={handleChange} 
+        defaultValue={selectedOption}
+        noOptionsMessage={() => "No cities found"}
+        placeholder="select city"
+    />
+    {selectedOption && <h2 className="mt-5 text-start">Today's Weather of <mark className='bg-warning'>{selectedOption}</mark></h2>}
     {showChart && <TabBar data={data}/>}
    </div>
 )

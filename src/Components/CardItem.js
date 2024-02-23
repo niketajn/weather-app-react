@@ -5,9 +5,11 @@ import drizzle_icon from '../Assets/drizzle.png';
 import rain_icon from '../Assets/rain.png';
 import snow_icon from '../Assets/snow.png';
 import { useState } from 'react';
+import wind_icon from '../Assets/wind.png';
+import humidity_icon from '../Assets/humidity.png';
 
 const CardItem = ({item}) =>{
-
+    console.log(item)
     const [weatherIcon, setWeatherIcon] = useState(cloud_icon);
     const [weatherDesc, setWeatherDesc] = useState(item.weather[0].description);
     var weatherIconData = item.weather[0].icon;
@@ -30,10 +32,16 @@ const CardItem = ({item}) =>{
     },[])
 
 return(
-        <div className="card" style={{width:"100px",height:"100px",boxShadow: '0px 0px 11px -7px #000',padding: '17px',borderRadius: '5px'}}>
-            <img className="card-img-top" src={weatherIcon}  style={{height:'60px'}} alt="Card image"/>
-            <div className="card-body">{weatherDesc}</div>
+    <div>
+        <div className="card align-items-center p-4" style={{boxShadow: '0px 0px 11px -7px #000'}}>
+            <img className="card-img-top" src={weatherIcon}  style={{height:'60px',width:'60px'}} alt="Card image"/>
+            <div className="card-body text-capitalize fw-bold">{weatherDesc}</div>
+            <div>
+                <p className="mb-0">Humidity: {item.main.humidity}%</p>
+                <p>Speed: {item.wind.speed}Km/hr</p>
+            </div>
         </div>
+    </div>
 )
 }
 

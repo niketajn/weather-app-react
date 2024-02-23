@@ -59,7 +59,7 @@ const ChartLine = ({chartData}) => {
   chartNewData.datasets[1].data = maxTempArr;
   
   return (
-    <div style={{ width: 600, height: 300 }}>
+    <div className="mt-5" style={{ width: 600, height: 300, display: 'inline-block' }}>
       <Line options={options} data={chartNewData} />
     </div>
   );

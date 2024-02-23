@@ -31,14 +31,14 @@ const TabBar = ({data}) => {
 
 return(
 <>  
-  <Tabs>
+  <Tabs className="mt-5">
     <TabList>
       {weekDays.map(((uniqueDay,index)=>{ return (<Tab key={index}>{uniqueDay}</Tab>)}))}
     </TabList>
 
     {dates.map((date) => {
       return( 
-    <TabPanel>
+    <TabPanel className="mt-5">
       <Cards cardData={response[date]}></Cards>
       <ChartLine chartData={response[date]}/>
     </TabPanel>
